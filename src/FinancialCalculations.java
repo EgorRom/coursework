@@ -1,57 +1,69 @@
 public class FinancialCalculations {
-    private static Employee[] employees;
+    private Employee[] employees;
 
 
     public FinancialCalculations(Employee[] employees) {
         this.employees = employees;
     }
 
+    public void sumSalary() {
+        int sum = 0;
+        for (int i = 0; i < employees.length; i++) {
+            if (employees[i] != null) {
+
+
+                sum = sum + employees[i].getSalary();
+            }
+        }
+        System.out.println("Сумма затрат на зарплаты в месяц " + sum);
+
+
+    }
+
 
     public void findMinSalary() {
         Employee result = employees[0];
-        for (Employee employee : employees) {
-            if (employee.getSalary() < result.getSalary()) {
-                result = employee;
+        for (int i = 0; i < employees.length; i++) {
+            if (employees[i] != null) {
+
+
+                if (employees[i].getSalary() < result.getSalary()) {
+                    result = employees[i];
+                }
             }
+
         }
         System.out.println("Мин. зарплата " + result.getSalary());
-
 
 
     }
 
     public void findMaxSalary() {
         Employee result = employees[0];
-        for (Employee employee : employees) {
-            if (employee.getSalary() > result.getSalary()) {
-                result = employee;
+        for (int i = 0; i < employees.length; i++) {
+            if (employees[i] != null) {
+                if (employees[i].getSalary() > result.getSalary()) {
+                    result = employees[i];
+                }
             }
         }
         System.out.println("Макс. зарплата " + result.getSalary());
 
 
-
     }
 
 
-    public void sumSalary() {
+    public void findAverageSalary() {
         int sum = 0;
         for (int i = 0; i < employees.length; i++) {
-            sum = sum + employees[i].getSalary();
+            if (employees[i] != null) {
+
+
+                sum = sum + employees[i].getSalary();
+            }
         }
-        System.out.println("Сумма затрат на зарплаты в месяц " + sum);
 
-
-
-    }
-
-    public void  findAverageSalary() {
-        int sum = 0;
-        for (int i = 0; i < employees.length; i++) {
-            sum = sum + employees[i].getSalary();
-        }
         System.out.println("Средняя зарплата " + sum / employees.length);
-
 
 
     }
@@ -59,6 +71,10 @@ public class FinancialCalculations {
     public String infoEmployee() {
         int i;
         for (i = 0; i < employees.length; i++) {
+            if (employees[i] != null) {
+
+            }
+
             System.out.println(employees[i]);
         }
         return employees.toString();
@@ -66,24 +82,29 @@ public class FinancialCalculations {
 
     public void fio() {
         for (int i = 0; i < employees.length; i++) {
-            System.out.println(employees[i].getName());
-        }
+            if (employees[i] != null) {
 
+                System.out.println(employees[i].getName());
+            }
+        }
 
 
     }
 
-   public void indexTheSalary(int percent) {
+    public void indexTheSalary(int percent) {
         int currentSalary = 0;
         for (Employee employee : employees) {
-            {
-                employee.setSalary((int) (employee.getSalary() * (percent / 100f + 1)));
-                currentSalary = employee.getSalary();
+            if (employee != null) {
 
+
+                {
+                    employee.setSalary((int) (employee.getSalary() * (percent / 100f + 1)));
+                    currentSalary = employee.getSalary();
+
+                }
+                System.out.println("Повышенная зарплата " + currentSalary);
             }
-            System.out.println("Повышенная зарплата " + currentSalary);
         }
-
 
 
     }
@@ -93,16 +114,19 @@ public class FinancialCalculations {
         int minSalary = Integer.MAX_VALUE;
         Employee result = null;
         for (Employee employee : employees) {
-            if (employee.getDepartment() != d) {
-                continue;
-            }
-            if (employee.getSalary() < minSalary) {
-                result = employee;
-                minSalary = employee.getSalary();
+            if (employee != null) {
+
+
+                if (employee.getDepartment() != d) {
+                    continue;
+                }
+                if (employee.getSalary() < minSalary) {
+                    result = employee;
+                    minSalary = employee.getSalary();
+                }
             }
         }
         System.out.println("Мин. зарплата по отделу " + minSalary);
-
 
 
     }
@@ -112,17 +136,37 @@ public class FinancialCalculations {
         int maxSalary = Integer.MIN_VALUE;
         Employee result = null;
         for (Employee employee : employees) {
-            if (employee.getDepartment() != m) {
-                continue;
-            }
-            if (employee.getSalary() > maxSalary) {
-                result = employee;
-                maxSalary = employee.getSalary();
+            if (employee != null) {
+
+
+                if (employee.getDepartment() != m) {
+                    continue;
+                }
+                if (employee.getSalary() > maxSalary) {
+                    result = employee;
+                    maxSalary = employee.getSalary();
+                }
             }
         }
         System.out.println("Макс. зарплата  по отделу " + maxSalary);
 
 
+    }
+
+    public void findSalaryToDepartmen(int dep) {
+        float sum = 0;
+
+        for (Employee employee : employees) {
+            if (employee != null) {
+
+
+                if (employee.getDepartment() == dep) {
+                    sum += employee.getSalary();
+
+                }
+            }
+        }
+        System.out.println("Денег на зарплату отделу " + dep + " = " + sum);
 
     }
 
@@ -131,12 +175,16 @@ public class FinancialCalculations {
         float sum = 0;
         int memberCount = 0;
         for (Employee employee : employees) {
-            if (employee.getDepartment() == dep) {
-                sum += employee.getSalary();
-                memberCount++;
+            if (employee != null) {
+
+
+                if (employee.getDepartment() == dep) {
+                    sum += employee.getSalary();
+                    memberCount++;
+                }
             }
         }
-        System.out.println("Средняя зарплата по отделу " + sum / memberCount);
+        System.out.println("Средняя зарплата по отделу " + dep + " " + sum / memberCount);
 
 
     }
@@ -144,11 +192,15 @@ public class FinancialCalculations {
     Employee[] indexTheSalaryDepartment(int percent, int department) {
         int currentSalary = 0;
         for (Employee employee : employees) {
-            if (employee.getDepartment() == department) {
+            if (employee != null) {
 
-                employee.setSalary((int) (employee.getSalary() * (percent / 100f + 1)));
-                currentSalary = employee.getSalary();
-                System.out.println("Индексированная  зарплата по отделу " + employee.getName() + " " + currentSalary);
+
+                if (employee.getDepartment() == department) {
+
+                    employee.setSalary((int) (employee.getSalary() * (percent / 100f + 1)));
+                    currentSalary = employee.getSalary();
+                    System.out.println("Индексированная  зарплата по отделу " + department + " " + employee.getName() + " " + currentSalary);
+                }
             }
 
 
@@ -160,17 +212,24 @@ public class FinancialCalculations {
 
     public void getEmployeesDep(int dep) {
         for (int i = 0; i < employees.length; i++) {
-            Employee employee = employees[i];
-            if (employee.getDepartment() == dep) {
-                System.out.println("Id-" + employee.getId() + " " + employee.getName() + " " + employee.getSalary());
+            if (employees[i] != null) {
+                Employee employee = employees[i];
+                if (employee.getDepartment() == dep) {
+                    System.out.println("Id-" + employee.getId() + " " + employee.getName() + " " + employee.getSalary());
+                }
             }
         }
     }
 
     public void lessThanANumber(int number) {
-        for (Employee employee : employees) {
-            if (employee.getSalary() < number) {
-                System.out.println(employee.getSalary());
+        for (int i = 0; i < employees.length; i++) {
+            if (employees[i] != null) {
+                Employee employee = employees[i];
+
+
+                if (employee.getSalary() < number) {
+                    System.out.println(employee);
+                }
             }
 
         }
@@ -179,9 +238,15 @@ public class FinancialCalculations {
     }
 
     public void moreThanANumber(int number) {
-        for (Employee employee : employees) {
-            if (employee.getSalary() >= number) {
-                System.out.println(employee.getSalary());
+        for (int i = 0; i < employees.length; i++) {
+
+            if (employees[i] != null) {
+                Employee employee = employees[i];
+
+
+                if (employee.getSalary() >= number) {
+                    System.out.println(employee);
+                }
             }
 
         }

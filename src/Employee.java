@@ -1,5 +1,8 @@
+import java.util.Arrays;
+
 public class Employee {
-    private Employee[] employees;
+
+
     private String name;
 
     private int salary;
@@ -8,6 +11,23 @@ public class Employee {
 
 
     private int id;
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public static void setCounter(int counter) {
+        Employee.counter = counter;
+    }
+
+    public Employee(String name, int salary, int department) {
+        this.name = name;
+        this.id = ++counter;
+        this.salary = salary;
+        this.department = department;
+
+    }
+
 
     public int getId() {
         return id;
@@ -29,19 +49,18 @@ public class Employee {
         this.salary = salary;
     }
 
-    public void setDepartment(int department) {
-        this.department = department;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public Employee(String name, int salary, int department) {
-        this.name = name;
-        this.id = ++counter;
-        this.salary = salary;
+    public void setDepartment(int department) {
         this.department = department;
     }
 
 
     public String toString() {
+
         return "ID-" + id + " Ф.И.О-" + name + " зарплата-" + salary + " отдел-" + department;
+
     }
 }
