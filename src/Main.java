@@ -72,7 +72,7 @@ public class Main {
         System.out.println("-----------------");
         //Новый сотрудник
         modificationOfData.addEmployee("Новый сотрудник", 25500, 5);
-        System.out.println("-----------------");
+        System.out.println("-----------------" );
         System.out.println(modificationOfData.getSize());
         //calculations.fio();
         modificationOfData.findEmployee("Разгонюк А.Д");

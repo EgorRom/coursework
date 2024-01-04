@@ -55,7 +55,7 @@ public class Employee {
 
     public void setDepartment(int department) {
         this.department = department;
-    }
+     }
 
 
     public String toString() {
